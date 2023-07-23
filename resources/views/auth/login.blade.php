@@ -1,74 +1,65 @@
-@extends('layouts.app')
-@section('content')
-    <link rel="stylesheet" href="../../css/app.css">
-    <div class="text-red-500">selam</div>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+@include('components.header')
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="h-screen flex justify-center items-center text-center">
+    <form action="{{route("login")}}" method="POST"
+          class="bg-gray-300 border rounded border-blue-700 shadow-md hover:shadow-lg shadow-blue-600 hover:shadow-blue-700 ease-in duration-100 px-24 py-16 md:py-24">
+        @csrf
+        <h2 class="text-center text-2xl font-bold mb-4">Login</h2>
+        <div class="flex my-2 justify-center mt-8">
+            <input
+                class="px-4 md:px-8 py-1 md:py-2 rounded-full border border-blue-700 @error("email") border-red-600 @enderror invalid:focus:ring-blue-400 caret-blue-500 placeholder:italic outline-none focus:ring-blue-700 focus:ring-1"
+                placeholder="Email" type="email" name="email" id="email" required autocomplete="email"
+                value="{{old("email")}}">
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
         </div>
-    </div>
+        <div class="flex my-2 justify-center">
+            <input
+                class="px-4 md:px-8 py-1 md:py-2 rounded-full border border-blue-700 @error("password") border-red-600 @enderror invalid:focus:ring-blue-400 caret-blue-500 placeholder:italic outline-none focus:ring-blue-700 focus:ring-1"
+                placeholder="Password" type="password" name="password" id="password" required autocomplete="password"
+                value="{{old("password")}}">
+        </div>
+
+        <div class="flex my-2 items-center justify-center text-center">
+            <button type="submit"
+                    class="px-6 md:px-8 py-1 md:py-2 rounded-full border border-blue-700 invalid:focus:ring-blue-400 caret-blue-500 placeholder:italic outline-none focus:ring-blue-700 focus:ring-1 bg-gradient-to-r hover:from-sky-500 hover:via-blue-600 hover:to-blue-800 hover:text-white hover:shadow-md hover:shadow-blue-700 ease-in duration-100">
+                Login
+            </button>
+        </div>
+
+        <div class="mt-6 items-center justify-center text-center">
+            @error('email')
+            <div class="text-red-800">
+                {{ $message }}
+            </div>
+            @enderror
+            @error('password')
+            <div class="text-red-800">
+                {{ $message }}
+            </div>
+            @enderror
+            @if (Route::has('password.request'))
+                <a class="" href="{{ route('password.request') }}">
+                    Forgot Your Password? <p class="inline-block text-blue-700 hover:text-blue-800">
+                        Reset
+                    </p>
+                </a>
+            @endif
+            <div class="">
+                <a href="{{route("register")}}">
+                    Don't have an account? <p class="inline-block text-blue-700 hover:text-blue-800">
+                        Register
+                    </p>
+                </a>
+            </div>
+
+        </div>
+
+
+    </form>
 </div>
-@endsection
+
+@include('components.footer')
