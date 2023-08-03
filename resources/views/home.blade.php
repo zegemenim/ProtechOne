@@ -132,7 +132,7 @@
 
     <div id="contact" class="flex h-[75vh] justify-center text-center items-center my-16">
         <form action="{{route("contact")}}" method="POST"
-              class="grid grid-cols-2 bg-gray-300 rounded-lg p-4 gap-4 border-2 border-blue-700 ring-2 shadow-blue-600 shadow-sm px-4 md:px-8">
+              class="grid grid-cols-2 bg-gray-100 rounded-lg p-4 gap-4 border-2 border-blue-700 ring-2 shadow-blue-600 shadow-sm px-4 md:px-8">
             <div class="flex col-span-2 text-2xl text-blue-900 font-bold justify-center">
                 Contact Us
             </div>
@@ -219,5 +219,4 @@
     count("counter");
     count("counter1");
     count("counter2");
-
 </script>

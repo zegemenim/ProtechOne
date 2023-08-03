@@ -2,7 +2,7 @@
 
 <div class="h-screen flex justify-center items-center text-center">
     <form action="{{route("login")}}" method="POST"
-          class="bg-gray-300 border rounded border-blue-700 shadow-md hover:shadow-lg shadow-blue-600 hover:shadow-blue-700 ease-in duration-100 px-24 py-16 md:py-24">
+          class="bg-gray-100 border rounded border-blue-700 shadow-md hover:shadow-lg shadow-blue-600 hover:shadow-blue-700 ease-in duration-100 px-24 py-16 md:py-24">
         @csrf
         <h2 class="text-center text-2xl font-bold mb-4">Login</h2>
         <div class="flex my-2 justify-center mt-8">
